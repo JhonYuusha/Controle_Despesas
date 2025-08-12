@@ -5,3 +5,5 @@ Implementações necessárias.
 3-Melhorar estética do site. 
 4-Correção de erros presentes no código.
 5-Adicionar alguma função extra se achar necessário
+
+CONCLUÍDO!
