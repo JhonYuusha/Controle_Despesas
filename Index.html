@@ -1,37 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafio controle de despesas</title>
+    <title>Controle de Despesas</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  
-    <div class="container">
-        <input type="text" id="descricao" placeholder="Descrição">
-        <input type="number" id="valor" placeholder="Valor" min="0" step="0.01">
-        <input type="date" id="data">
-        <button onclick="adicionar()">Adicionar</button>
+
+    <!-- Tela Splash -->
+    <div id="splash">
+        <video autoplay muted playsinline>
+            <source src="video/dollars.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos.
+        </video>
+        <h1>Controle de Despesas</h1>
     </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Descrição</th>
-                <th>Valor($)</th>
-                <th>Data</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody id="lista"></tbody>
-        <tfoot>
-            <tr>
-                <td colspan="4" id="total">TOTAL: $0,00</td>
-            </tr>
-        </tfoot>
-    </table>
-      <h1>Controle de despesas</h1>
+
+    <div id="conteudo" style="display:none;">
+        <h1>Controle de Despesas</h1>
+
+        <div class="container">
+            <input type="text" id="descricao" placeholder="Descrição">
+            <input type="number" id="valor" placeholder="Valor" min="0" step="0.01">
+            <input type="date" id="data">
+            <select id="categoria">
+                <option value="">Categoria</option>
+                <option>Alimentação</option>
+                <option>Transporte</option>
+                <option>Lazer</option>
+                <option>Saúde</option>
+                <option>Outros</option>
+            </select>
+            <button id="btnAdicionar" onclick="adicionar()">Adicionar</button>
+            <button class="btn-limpar" onclick="limparTudo()">Limpar Tudo</button>
+        </div>
+
+        <div class="filtro">
+            <label>Filtrar por data:</label>
+            <input type="month" id="filtroData" onchange="filtrarPorData()">
+            <button onclick="limparFiltro()">Limpar Filtro</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Valor (R$)</th>
+                    <th>Data</th>
+                    <th>Categoria</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="lista"></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" id="total">TOTAL R$: 0,00</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <button id="btnExportar">Exportar despesas (.txt)</button>
 
     <script src="script.js"></script>
+    <script>
+        setTimeout(() => {
+            document.getElementById("splash").style.display = "none";
+            document.getElementById("conteudo").style.display = "block";
+        }, 3000);
+    </script>
 </body>
 </html>
